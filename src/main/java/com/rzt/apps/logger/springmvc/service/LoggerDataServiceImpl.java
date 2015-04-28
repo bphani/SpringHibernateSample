@@ -1,0 +1,39 @@
+package com.rzt.apps.logger.springmvc.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.rzt.apps.logger.springmvc.dao.DataLogDao;
+import com.rzt.apps.logger.springmvc.dao.EmployeeDao;
+import com.rzt.apps.logger.springmvc.domain.DataLog;
+import com.rzt.apps.logger.springmvc.domain.Employee;
+
+@Service("loggerDataService")
+@Transactional
+public class LoggerDataServiceImpl implements LoggerDataService
+{
+
+	@Autowired
+	private DataLogDao dao;
+	
+	public void saveLogData(DataLog dt) {
+		dao.saveLog( dt );
+	}
+
+	@Override
+	public List<String> getAllUsers()
+	{
+		return dao.findAllUsers();
+	}
+
+	@Override
+	public List<DataLog> getLogData( String person )
+	{
+		// TODO Auto-generated method stub
+		return dao.getLogData(person);
+	}
+
+}
